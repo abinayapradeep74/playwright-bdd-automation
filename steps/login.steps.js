@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
 import { LoginPage } from '../Pages/LoginPage.js';
-import loginData from '../test-data/loginData.json';
+import loginData from '../test-data/LoginData.json';
 
 
 const { Given, When, Then } = createBdd();
