@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+        stage('Generate BDD Tests') {
+            steps {
+                bat 'npm run bddgen'
+            }
+        }
+
         stage('Run Playwright Tests') {
             steps {
                 bat 'npm test'
