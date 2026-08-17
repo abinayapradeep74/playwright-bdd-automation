@@ -1,24 +1,21 @@
 import { createBdd } from 'playwright-bdd';
-import { LoginPage } from '../Pages/LoginPage.js';
+import { test } from '../fixtures/test-fixtures.js';
+//import { LoginPage } from '../Pages/LoginPage.js';
 import loginData from '../test-data/LoginData.json';
 
 
-const { Given, When, Then } = createBdd();
-let loginPage;
-let dashboardPage;
+const { Given, When, Then } = createBdd(test);
 
-Given('I am on the OrangeHRM login page', async ({ page }) => {
-
-    loginPage = new LoginPage(page);
+Given('I am on the OrangeHRM login page', async ({ loginPage }) => {
 
     await loginPage.navigate('/');
 
     console.log('Given: Navigate to OrangeHRM login page');
 
 });
-When('I login with valid credentials', async ({ page }) => {
+When('I login with valid credentials', async ({ loginPage }) => {
 
-    dashboardPage = await loginPage.Login(
+    await loginPage.Login(
         loginData.validLogin.username,
         loginData.validLogin.password
     );
@@ -27,7 +24,7 @@ When('I login with valid credentials', async ({ page }) => {
 
 });
 
-Then('I should be redirected to the Dashboard page', async ({ page }) => {
+Then('I should be redirected to the Dashboard page', async ({ dashboardPage }) => {
 
     const dashboardUrl = await dashboardPage.verifyDashboardUrl();
 
@@ -39,7 +36,7 @@ Then('I should be redirected to the Dashboard page', async ({ page }) => {
 
 });
 
-Then('the Dashboard header should be displayed', async ({ page }) => {
+Then('the Dashboard header should be displayed', async ({ dashboardPage }) => {
 
     const headerDisplayed = await dashboardPage.verifyHeaderDisplayed();
 
@@ -51,7 +48,7 @@ Then('the Dashboard header should be displayed', async ({ page }) => {
 
 });
 
-Then('the Dashboard menu should be displayed', async ({ page }) => {
+Then('the Dashboard menu should be displayed', async ({ dashboardPage }) => {
 
     const menuDisplayed = await dashboardPage.verifyDashboardmenu();
 
