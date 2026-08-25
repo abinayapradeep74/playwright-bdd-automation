@@ -36,5 +36,14 @@ pipeline {
                 bat 'npm test'
             }
         }
+}
+
+post {
+    always {
+        archiveArtifacts artifacts: 'playwright-report/**/*',
+                         allowEmptyArchive: true
+    }
+}
+
     }
 }
