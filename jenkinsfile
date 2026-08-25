@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        BASE_URL = 'https://opensource-demo.orangehrmlive.com'
+    }
 
     tools {
         nodejs 'NodeJS-24'
@@ -24,6 +27,13 @@ pipeline {
                 bat 'npx playwright install'
             }
         }
+
+ stage('Verify Environment') {
+        steps {
+            bat 'echo BASE_URL=%BASE_URL%'
+        }
+    }
+
 
         stage('Generate BDD Tests') {
             steps {
