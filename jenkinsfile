@@ -46,6 +46,12 @@ pipeline {
                 bat 'npm test'
             }
         }
+
+        stage('Generate Allure Report') {
+    steps {
+        bat 'npm run allure:generate'
+    }
+}
     }
 
     post {
