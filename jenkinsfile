@@ -66,6 +66,10 @@ pipeline {
                 reportTitles: 'Playwright Test Execution Report',
                 useWrapperFileDirectly: true
             ])
+
+            allure([
+                results: [[path: 'allure-results']]
+            ])
         }
     }
 }
