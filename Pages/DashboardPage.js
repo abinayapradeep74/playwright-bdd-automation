@@ -1,4 +1,5 @@
 import{BasePage} from "./BasePage";
+import logger from '../utils/logger.cjs';
 export class DashboardPage extends BasePage{
 
 constructor(page)
@@ -16,9 +17,9 @@ async verifyDashboardUrl(){
 
     const currentUrl = await this.getURL();
 
-    console.log("Current Dashboard URL:", currentUrl);
+    logger.info(`Current Dashboard URL: ${currentUrl}`);
 
-    return currentUrl.includes('dashboard');
+    return currentUrl.includes('/dashboard/index');
 
 }
 

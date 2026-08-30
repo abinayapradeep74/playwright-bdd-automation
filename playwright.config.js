@@ -20,6 +20,7 @@ const testDir = defineBddConfig({
   steps: [
     './steps/**/*.js',
     './fixtures/**/*.js',
+    './hooks/**/*.js'
   ],
 });
 export default defineConfig({
@@ -38,15 +39,12 @@ export default defineConfig({
       ['allure-playwright']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  
-  
   use: {
     baseURL:process.env.BASE_URL,
 
     trace: 'on-first-retry',
         screenshot: 'only-on-failure',
             video: 'retain-on-failure',
-
 
   },
 
